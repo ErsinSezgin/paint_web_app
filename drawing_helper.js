@@ -12,13 +12,19 @@ var canvas,
 	redoList = [], 
 	undoList = [];
 
+var resizeCanvas = function() {
+	canvas = document.getElementById("canvas");
+    
+    canvas.width  = canvas.parentElement.offsetWidth - 30;
+    canvasWidth = canvas.width;
+}
+
 var init = function() {
 	var imageLoader = document.getElementById('imagePicker');
 	
 	imageLoader.addEventListener('change', importImage, false);
 	canvas = document.getElementById('canvas');
 	context = canvas.getContext("2d");
-	// context.scale(0.5, 0.5);
 	canvasWidth = canvas.width;
 	canvasHeight = canvas.height;
 	
@@ -53,6 +59,8 @@ var init = function() {
 		}, 
 		false
 		);
+
+	resizeCanvas();
 }
 
 var color = function(obj) {
@@ -73,8 +81,6 @@ var draw = function() {
 	context.lineWidth = strokeWidth;
 	context.stroke();
 	context.closePath();
-
-	console.log("X: " + currentX + " Y: " + currentY);
 }
 
 var undo = function() {
