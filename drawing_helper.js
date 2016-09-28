@@ -18,6 +18,7 @@ var init = function() {
 	imageLoader.addEventListener('change', importImage, false);
 	canvas = document.getElementById('canvas');
 	context = canvas.getContext("2d");
+	// context.scale(0.5, 0.5);
 	canvasWidth = canvas.width;
 	canvasHeight = canvas.height;
 	
@@ -72,6 +73,8 @@ var draw = function() {
 	context.lineWidth = strokeWidth;
 	context.stroke();
 	context.closePath();
+
+	console.log("X: " + currentX + " Y: " + currentY);
 }
 
 var undo = function() {
@@ -128,8 +131,8 @@ var drawHelper = function(eventName, evnt) {
 		shouldDraw = true;
 		previousX = currentX;
 		previousY = currentY;
-		currentX = evnt.clientX - canvas.offsetLeft;
-		currentY = evnt.clientY - canvas.offsetTop;
+		currentX = evnt.clientX - canvas.offsetLeft - canvas.parentElement.offsetLeft;
+		currentY = evnt.clientY - canvas.offsetTop - canvas.parentElement.offsetTop;
 		undoList.push(document.getElementById('canvas').toDataURL());
 		redoList = [];
 	} else if (eventName == 'up' || eventName == 'out') {
@@ -137,8 +140,8 @@ var drawHelper = function(eventName, evnt) {
 	} else if (eventName == 'move' && shouldDraw) {
 		previousX = currentX;
 		previousY = currentY;
-		currentX = evnt.clientX - canvas.offsetLeft;
-		currentY = evnt.clientY - canvas.offsetTop;
+		currentX = evnt.clientX - canvas.offsetLeft - canvas.parentElement.offsetLeft;
+		currentY = evnt.clientY - canvas.offsetTop - canvas.parentElement.offsetTop;
 		draw();
 	}
 }
