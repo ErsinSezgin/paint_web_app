@@ -1,0 +1,24 @@
+<html>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <script type="text/javascript" src="drawing_helper.js"></script>
+    <body onload="init()">
+        <canvas id="canvas" width="400" height="400" style="position:absolute;top:10%;left:10%;border:2px solid;"></canvas>
+        <div style="position:absolute;top:12%;left:43%;">Choose Color</div>
+        <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" id="green" onclick="color(this)"></div>
+        <div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" id="blue" onclick="color(this)"></div>
+        <div style="position:absolute;top:15%;left:47%;width:10px;height:10px;background:red;" id="red" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:45%;width:10px;height:10px;background:yellow;" id="yellow" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:46%;width:10px;height:10px;background:orange;" id="orange" onclick="color(this)"></div>
+        <div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" id="black" onclick="color(this)"></div>
+        <div style="position:absolute;top:20%;left:43%;">Eraser</div>
+        <div style="position:absolute;top:22%;left:45%;width:15px;height:15px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+        <input type="range" id="slider" size="100" min="4" max = "20" value="4" step="4" onchange="changeStrokeWidth(this.value)" style="position:absolute;top:30%;left:40%;">
+        <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
+        <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;">
+        <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:55%;left:15%;">
+        <input type="button" value="undo" id="undo" size="23" onclick="undo()" style="position:absolute;top:55%;left:25%;">
+        <input type="button" value="redo" id="redo" size="23" onclick="redo()" style="position:absolute;top:55%;left:30%;">
+        <input type="file" id="imagePicker" size="23" style="position:absolute;top:55%;left:35%;">
+        <input type="button" value="download" id="download" size="23" onclick="download()" style="position:absolute;top:55%;left:55%;">
+    </body>
+    </html>
